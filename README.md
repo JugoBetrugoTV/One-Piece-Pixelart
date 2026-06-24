@@ -29,6 +29,18 @@ Laufzeit per GDScript erzeugt. Das hält das Projekt robust und leicht erweiterb
 
 ---
 
+## 🌳 Arbeitsstand / Branches
+
+`main` ist der normale Arbeitsstand des Projekts – immer hier auschecken:
+
+```bash
+git clone https://github.com/JugoBetrugoTV/One-Piece-Pixelart.git
+cd One-Piece-Pixelart   # befindet sich auf 'main'
+```
+
+Neue Features/Arcs entstehen auf eigenen Branches und werden per Pull Request
+nach `main` gemergt.
+
 ## ▶️ Starten
 
 1. **Godot 4.6** herunterladen: <https://godotengine.org/download>
@@ -124,28 +136,20 @@ Vollständiges Schema mit allen Feldern und Aktions-Typen:
 
 ## ✅ Verifizierung / Tests
 
-Das Projekt wurde **headless mit Godot automatisiert getestet** (Import +
-Rauchtest), nicht nur geschrieben:
+Das Projekt wurde **headless mit Godot 4.6 (Zielversion) automatisiert getestet**,
+nicht nur geschrieben:
 
-- **Import ohne Fehler**: alle 13 GDScript-Dateien und Szenen kompilieren sauber
+- **Import ohne Fehler**: alle GDScript-Dateien und Szenen kompilieren sauber
   (`godot --headless --import`).
-- **Rauchtest** (`tools/SmokePilot.tscn`): 22 Prüfungen, alle grün – u.a.
+- **Rauchtest** (`tools/SmokePilot.tscn`): **22/22 Prüfungen grün** – u.a.
   Autoloads, Map-Aufbau beider Maps, TileSet-Kollisionsschicht, Speichern/Laden,
   unveränderte Gegner-Daten nach dem Kampf, ein Kampf bis „Sieg" und ein Dialog
   mit Aktion.
 
-Rauchtest selbst ausführen:
+Details und Anleitung: **[`TESTING.md`](TESTING.md)**.
 
-```bash
-godot --headless res://tools/SmokePilot.tscn
-# Exit-Code 0 = alle Prüfungen bestanden
-```
-
-> Getestet wurde headless mit **Godot 4.4.1** (in der Build-Umgebung war kein
-> 4.6-Binary verfügbar). Das Projekt **zielt auf Godot 4.6**; alle verwendeten
-> APIs (`TileMapLayer`, `TileSet`-Physik, `CharacterBody2D`, Control-UI) sind von
-> 4.3 bis 4.6 stabil.
-
-Was **noch nicht** automatisiert getestet werden konnte (echtes Spielgefühl,
-Optik, Tastatur-Bedienung im Editor, Exports): siehe
-**[`KNOWN_ISSUES.md`](KNOWN_ISSUES.md)**.
+> **Verifiziert headless mit Godot 4.6.stable** (zusätzlich gegengeprüft mit
+> 4.4.1). **Noch offen:** der manuelle Godot-4.6-**Editor-Test** mit Tastatur
+> und Bildschirm (Optik der Pixelart, Spielgefühl, kompletter Durchlauf) –
+> das lässt sich headless nicht beurteilen. Siehe
+> **[`KNOWN_ISSUES.md`](KNOWN_ISSUES.md)** und **[`TODO_NEXT.md`](TODO_NEXT.md)**.

@@ -3,7 +3,12 @@
 Stand: Basis-Stabilisierung. Romance Dawn ist headless verifiziert; bevor Arc 3
 (Syrup Village) gebaut wird, hier ehrlich der Teststatus.
 
-## ✅ Automatisiert getestet (Godot 4.4.1, headless)
+> **Versions-Status:** Der automatisierte Smoke-Test wurde mit **Godot 4.6.stable**
+> (Zielversion) ausgeführt – Import fehlerfrei, 22/22 Prüfungen grün. Zusätzlich
+> gegengeprüft mit 4.4.1. **Der manuelle Godot-4.6-Editor-Test (Optik, Bedienung,
+> kompletter Durchlauf) steht weiterhin aus.**
+
+## ✅ Automatisiert getestet (Godot 4.6.stable, headless)
 
 - Projekt-Import ohne Script-/Resource-Fehler (alle 13 `.gd`, alle Szenen).
 - Autoloads korrekt registriert und erreichbar (GameState, ArcManager,
@@ -48,8 +53,9 @@ Diese Dinge brauchen einen echten Editor-/Render-Lauf mit Tastatur und Bildschir
   muss ggf. noch manuell auf `main` gestellt werden
   (GitHub → Settings → General → Default branch), falls nicht automatisch
   geschehen. Programmatisch war das in dieser Umgebung nicht möglich.
-- **Godot-Zielversion**: Projekt deklariert 4.6 (`project.godot`), verifiziert
-  wurde mit 4.4.1. Beim ersten Öffnen in 4.6 ggf. kurzer Re-Import.
+- **Godot-Zielversion**: Projekt deklariert 4.6 (`project.godot`) und wurde
+  headless mit **4.6.stable** verifiziert. Der interaktive Editor-Test (Render +
+  Tastatur) steht noch aus.
 - **Kamera bei kleinen Maps**: Maps (320×240) sind kleiner als das Sichtfenster
   (640×360); die Kamera-Limits führen zu Rand-/Letterbox-Bereichen. Funktional
   ok, optisch evtl. später anpassen.
