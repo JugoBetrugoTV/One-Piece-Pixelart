@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name NpcActor
 ## ============================================================================
 ## npc.gd – Ein NPC im Overworld. Blockiert die Bewegung (StaticBody2D) und
 ## trägt eine Dialog-ID, die beim Ansprechen ausgelöst wird.

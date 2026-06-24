@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://grandvoyagesmoke"]
+
+[ext_resource type="Script" path="res://tools/smoke_pilot.gd" id="1_smoke"]
+
+[node name="SmokePilot" type="Node"]
+script = ExtResource("1_smoke")

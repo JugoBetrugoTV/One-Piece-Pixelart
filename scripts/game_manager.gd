@@ -24,7 +24,7 @@ enum Mode { MENU, OVERWORLD, PAUSED }
 var mode: int = Mode.MENU
 
 var _world: Node2D            # enthält TileMapLayer(s) + NPCs
-var _player: CharacterBody2D
+var _player: PlayerController
 var _npcs: Array = []
 var _tileset: TileSet
 var _map_pixel_size: Vector2 = Vector2.ZERO
@@ -56,11 +56,16 @@ func _ready() -> void:
 func _build_tileset() -> TileSet:
 	var ts := TileSet.new()
 	ts.tile_size = Vector2i(TILE, TILE)
-	ts.add_physics_layer(0)
 
 	var src := TileSetAtlasSource.new()
 	src.texture = PlaceholderArt.tile_atlas()
 	src.texture_region_size = Vector2i(TILE, TILE)
+
+	# WICHTIG: Quelle und Physik-Layer müssen am TileSet hängen, BEVOR die
+	# Tiles erzeugt werden – sonst hat das TileData keine Physik-Schicht und
+	# add_collision_polygon(0) läuft ins Leere (Index out of bounds).
+	ts.add_source(src, 0)
+	ts.add_physics_layer(0)
 
 	for i in PlaceholderArt.TILE_ORDER.size():
 		var coord := Vector2i(i, 0)
@@ -72,7 +77,6 @@ func _build_tileset() -> TileSet:
 			td.set_collision_polygon_points(0, 0, PackedVector2Array([
 				Vector2(-8, -8), Vector2(8, -8), Vector2(8, 8), Vector2(-8, 8)
 			]))
-	ts.add_source(src, 0)
 	return ts
 
 # Atlas-Spalte für einen Tile-Namen.
@@ -191,14 +195,14 @@ func _load_map(map_id: String, spawn: Variant) -> void:
 	# NPCs platzieren.
 	_npcs.clear()
 	for nd in mdef.get("npcs", []):
-		var npc := NpcScene.instantiate()
+		var npc := NpcScene.instantiate() as NpcActor
 		_world.add_child(npc)
 		npc.setup(nd)
 		_npcs.append(npc)
 
 	# Spieler erzeugen oder neu positionieren.
 	if _player == null:
-		_player = PlayerScene.instantiate()
+		_player = PlayerScene.instantiate() as PlayerController
 		add_child(_player)
 		_player.tile_changed.connect(_on_player_tile_changed)
 	var spawn_tile: Vector2i
@@ -232,7 +236,7 @@ func _fill_layer(layer: TileMapLayer, rows: Array, legend: Dictionary) -> void:
 			layer.set_cell(Vector2i(x, y), 0, _atlas_coord(tname))
 
 func _apply_camera_limits() -> void:
-	var cam: Camera2D = _player.get_node_or_null("Camera2D")
+	var cam := _player.get_node_or_null("Camera2D") as Camera2D
 	if cam:
 		cam.limit_left = 0
 		cam.limit_top = 0
@@ -289,10 +293,10 @@ func _process(_dt: float) -> void:
 			_pause_input()
 
 func _try_interact() -> void:
-	var ft := _player.front_tile()
-	for npc in _npcs:
+	var ft: Vector2i = _player.front_tile()
+	for npc: NpcActor in _npcs:
 		if npc.tile() == ft:
-			var dlg_id := npc.dialogue_id()
+			var dlg_id: String = npc.dialogue_id()
 			var lines := ArcManager.get_dialogue(dlg_id)
 			if lines.is_empty():
 				lines = [{"speaker": npc.data.get("name", "?"), "text": "..."}]

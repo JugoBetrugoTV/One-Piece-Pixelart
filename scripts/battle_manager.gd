@@ -127,7 +127,7 @@ func _next_turn() -> void:
 	var entry: Dictionary = _order[_turn_ptr]
 	var ref: Dictionary = entry.ref
 	# Tote überspringen.
-	var dead := (entry.side == "ally" and int(ref.kp) <= 0) or (entry.side == "enemy" and not ref.alive)
+	var dead: bool = (entry.side == "ally" and int(ref.kp) <= 0) or (entry.side == "enemy" and not ref.alive)
 	if dead:
 		_turn_ptr += 1
 		_next_turn()

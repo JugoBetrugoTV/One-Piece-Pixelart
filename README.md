@@ -122,10 +122,30 @@ Vollständiges Schema mit allen Feldern und Aktions-Typen:
 
 ---
 
-## ⚠️ Hinweis zum Entwicklungsstand
+## ✅ Verifizierung / Tests
 
-Das Projekt wurde so geschrieben, dass es in **Godot 4.6** geöffnet und gestartet
-werden kann; es konnte in der Build-Umgebung jedoch nicht im Editor „durchgespielt"
-werden. Sollte beim ersten Start eine Kleinigkeit klemmen, steht in der
-Godot-Konsole (unten) eine klare Fehlermeldung mit Datei und Zeile – melde sie
-einfach, dann wird sie gezielt behoben.
+Das Projekt wurde **headless mit Godot automatisiert getestet** (Import +
+Rauchtest), nicht nur geschrieben:
+
+- **Import ohne Fehler**: alle 13 GDScript-Dateien und Szenen kompilieren sauber
+  (`godot --headless --import`).
+- **Rauchtest** (`tools/SmokePilot.tscn`): 22 Prüfungen, alle grün – u.a.
+  Autoloads, Map-Aufbau beider Maps, TileSet-Kollisionsschicht, Speichern/Laden,
+  unveränderte Gegner-Daten nach dem Kampf, ein Kampf bis „Sieg" und ein Dialog
+  mit Aktion.
+
+Rauchtest selbst ausführen:
+
+```bash
+godot --headless res://tools/SmokePilot.tscn
+# Exit-Code 0 = alle Prüfungen bestanden
+```
+
+> Getestet wurde headless mit **Godot 4.4.1** (in der Build-Umgebung war kein
+> 4.6-Binary verfügbar). Das Projekt **zielt auf Godot 4.6**; alle verwendeten
+> APIs (`TileMapLayer`, `TileSet`-Physik, `CharacterBody2D`, Control-UI) sind von
+> 4.3 bis 4.6 stabil.
+
+Was **noch nicht** automatisiert getestet werden konnte (echtes Spielgefühl,
+Optik, Tastatur-Bedienung im Editor, Exports): siehe
+**[`KNOWN_ISSUES.md`](KNOWN_ISSUES.md)**.

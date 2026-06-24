@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerController
 ## ============================================================================
 ## player_controller.gd – Steuerung der Spielfigur im Top-Down-Overworld.
 ##
