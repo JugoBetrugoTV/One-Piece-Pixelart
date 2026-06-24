@@ -1,0 +1,49 @@
+; Engine configuration file – Godot 4.6
+; "Grand Voyage" – ein One-Piece-inspiriertes 2D-Pixelart-RPG (Fan-Projekt).
+; Diese Datei wird normalerweise vom Godot-Editor verwaltet; sie ist hier
+; von Hand erstellt, damit das Projekt direkt geöffnet werden kann.
+
+config_version=5
+
+[application]
+
+config/name="Grand Voyage"
+config/description="One-Piece-inspiriertes Pixelart-RPG. Privates Fan-Projekt. Keine originalen Assets."
+run/main_scene="res://scenes/main/Main.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+
+[autoload]
+
+; Globaler Spielzustand (Party, Inventar, Flags, aktueller Arc/Map).
+GameState="*res://autoload/GameState.gd"
+; Lädt Arc-JSON-Dateien und baut daraus Maps.
+ArcManager="*res://scripts/arc_manager.gd"
+; Speichern/Laden in user://.
+SaveManager="*res://scripts/save_manager.gd"
+; Questfortschritt.
+QuestManager="*res://scripts/quest_manager.gd"
+; JSON-basiertes Dialogsystem mit Auswahlmöglichkeiten.
+DialogueManager="*res://scripts/dialogue_manager.gd"
+; Rundenbasiertes Kampfsystem.
+BattleManager="*res://scripts/battle_manager.gd"
+
+[display]
+
+; Interne Auflösung 640x360, pixelgenau hochskaliert.
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+; Nearest-Filtering => knackige Pixelart ohne Weichzeichnen.
+textures/canvas_textures/default_texture_filter=0
+
+[physics]
+
+common/physics_ticks_per_second=60

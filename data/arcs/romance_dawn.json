@@ -1,0 +1,150 @@
+{
+	"id": "romance_dawn",
+	"title": "Romance Dawn – Der Aufbruch",
+	"intro": "In einem ruhigen Windmühlen-Dorf träumt ein junger Pirat namens Kapu davon, die sieben Meere zu bereisen. Heute beginnt seine Reise. (Bewegen: WASD · Reden: E · Menü: Q)",
+	"start_map": "windmuehlen_dorf",
+	"next_arc": "orange_town",
+
+	"enemies": {
+		"rivax": {
+			"name": "Banditen-Boss Rivax", "max_kp": 70, "atk": 14, "def": 6, "spd": 6,
+			"exp": 40, "gold": 80, "color": "9b2d2d",
+			"skills": [ {"name": "Eisenkeule", "power": 1.7}, {"name": "Wutbrüllen", "power": 1.3} ]
+		}
+	},
+
+	"quests": [
+		{
+			"id": "rd_main",
+			"name": "Setz die Segel!",
+			"desc": "Sammle Mut, finde einen Verbündeten und beweise dich am Hafen.",
+			"steps": [
+				{ "id": "hafen", "text": "Geh zum Hafen und sprich mit dem Schwertkämpfer." },
+				{ "id": "boss", "text": "Besiege den Banditen-Boss Rivax am Steg." }
+			],
+			"reward": { "gold": 50, "exp": 20, "items": { "fleisch_spiess": 2 } }
+		}
+	],
+
+	"maps": {
+		"windmuehlen_dorf": {
+			"w": 20, "h": 15,
+			"spawn": [7, 8],
+			"legend": {
+				"G": "gras", "W": "wasser", "S": "sand", "P": "weg", "T": "baum",
+				"D": "dach", "H": "wand", "R": "tuer", "B": "blume", "F": "fels",
+				"C": "deck", "K": "steg"
+			},
+			"ground": [
+				"TTTTTTTTTTTTTTTTTTTT",
+				"TGGGGGGGGGGGGGGGGGGT",
+				"TGGDDDDGGGGGGGGGGGGT",
+				"TGGHHRHGGGGGGGGTTGGT",
+				"TGGGGGGGGGGGGGGTTGGT",
+				"TGGGGGGPGGGGGGGGGGGT",
+				"TGGBGGGPGGGGGGGGGGGT",
+				"TGGGGGGPGGGGGGGGGBGT",
+				"TFFGGGGPGGGGGGGGGGGT",
+				"TGGGGGGPGGGGGGGGGGGT",
+				"TGGGGGGPGGGGGGTTTGGT",
+				"TGGGGGGPGGGGGGTTTGGT",
+				"TGGGGGGPGGGGGGGGGGGT",
+				"TGGGGGGPGGGGGGGGGGGT",
+				"TTTTTTTPTTTTTTTTTTTT"
+			],
+			"npcs": [
+				{ "id": "makina", "x": 5, "y": 5, "dialogue": "makina_intro",
+				  "colors": { "skin": "f0c8a0", "hair": "5a3a8a", "shirt": "e8d05a", "pants": "806040" } },
+				{ "id": "aelteste", "x": 14, "y": 6, "dialogue": "aelteste_hint",
+				  "colors": { "skin": "e8c0a0", "hair": "c8c8c8", "shirt": "808890", "pants": "404858" } }
+			],
+			"exits": [
+				{ "x": 7, "y": 14, "to": "hafen", "tx": 7, "ty": 1 }
+			]
+		},
+
+		"hafen": {
+			"w": 20, "h": 15,
+			"spawn": [7, 1],
+			"legend": {
+				"G": "gras", "W": "wasser", "S": "sand", "P": "weg", "T": "baum",
+				"D": "dach", "H": "wand", "R": "tuer", "B": "blume", "F": "fels",
+				"C": "deck", "K": "steg"
+			},
+			"ground": [
+				"TTTTTTTPTTTTTTTTTTTT",
+				"TGGGGGGGGGGGGGGGGGGT",
+				"TGGGGGGGGGGGGGGGGGGT",
+				"TSSSSSSSSSSSSSSSSSST",
+				"TSSSSSSSSSSSSSSSSSST",
+				"SSSSSSSSSSSSSSSSSSSS",
+				"SSSSSSSSSSSSSSSSSSSS",
+				"SSSSSSSKKKKSSSSSSSSS",
+				"WWWWWWWKKKKWWWWWWWWW",
+				"WWWWWWWKKKKWWWWWWWWW",
+				"WWWWWWWCCCCWWWWWWWWW",
+				"WWWWWWWCCCCWWWWWWWWW",
+				"WWWWWWWCCCCWWWWWWWWW",
+				"WWWWWWWWWWWWWWWWWWWW",
+				"WWWWWWWWWWWWWWWWWWWW"
+			],
+			"npcs": [
+				{ "id": "zelos", "x": 4, "y": 5, "dialogue": "zelos_intro",
+				  "colors": { "skin": "e8b888", "hair": "3a7d4a", "shirt": "2f6f5f", "pants": "303040" } },
+				{ "id": "rivax", "x": 8, "y": 7, "dialogue": "rivax_intro",
+				  "colors": { "skin": "c89a6a", "hair": "1a1a1a", "shirt": "9b2d2d", "pants": "303030" } }
+			],
+			"exits": [
+				{ "x": 7, "y": 0, "to": "windmuehlen_dorf", "tx": 7, "ty": 13 }
+			],
+			"encounter": { "rate": 0.10, "max": 2, "pool": ["strolch", "streuner_hund"] }
+		}
+	},
+
+	"dialogues": {
+		"makina_intro": [
+			{ "speaker": "Makina", "text": "Kapu! Du strahlst ja heute. Heute ist also der große Tag?" },
+			{ "speaker": "Kapu", "text": "Ja! Ich werde der freieste Pirat aller Meere!" },
+			{ "speaker": "Makina", "text": "Dann nimm das mit auf den Weg. Und sei vorsichtig – am Hafen treiben sich Banditen herum.",
+			  "action": { "type": "give_item", "id": "fleisch_spiess", "count": 1 } },
+			{ "speaker": "Makina", "text": "Such am Hafen nach jemandem, der mit dem Schwert umgehen kann. Allein kommt man nicht weit.",
+			  "action": { "type": "start_quest", "id": "rd_main" } },
+			{ "speaker": "Kapu", "text": "Danke, Makina! Bis bald!" }
+		],
+
+		"aelteste_hint": [
+			{ "speaker": "Älteste", "text": "Der Weg nach Süden führt zum Hafen. Folge einfach dem Pfad, junger Träumer." }
+		],
+
+		"zelos_intro": [
+			{ "speaker": "Zelos", "text": "Hm? Du siehst nicht aus wie einer von Rivax' Schlägern." },
+			{ "speaker": "Kapu", "text": "Bin ich auch nicht. Ich suche eine Crew. Wie wär's – kämpfst du an meiner Seite?" },
+			{ "speaker": "Zelos", "text": "Eine Crew, ja? Wenn du es mit Rivax aufnimmst, schließe ich mich an.",
+			  "choices": [
+				{ "text": "Abgemacht!", "goto": 3 },
+				{ "text": "Noch nicht.", "goto": 5 }
+			  ] },
+			{ "speaker": "Zelos", "text": "Dann ist es beschlossen. Meine Klingen gehören ab jetzt deiner Crew.",
+			  "action": { "type": "recruit", "id": "zelos" } },
+			{ "speaker": "System", "text": "Zelos schließt sich der Crew an!",
+			  "action": { "type": "advance_quest", "id": "rd_main" },
+			  "choices": [ { "text": "Auf geht's!", "goto": 6 } ] },
+			{ "speaker": "Zelos", "text": "Überleg's dir. Ich bin hier, wenn du bereit bist." }
+		],
+
+		"rivax_intro": [
+			{ "speaker": "Rivax", "text": "Du Wicht willst in See stechen? Über meine Leiche – und über meinen Steg erst recht nicht!" },
+			{ "speaker": "Kapu", "text": "Dann mach ich eben den Weg frei!",
+			  "action": { "type": "start_battle", "boss": true, "group": ["rivax"], "win_dialogue": "rivax_defeat" } }
+		],
+
+		"rivax_defeat": [
+			{ "speaker": "Rivax", "text": "Unmöglich ... von so einem Grünschnabel ..." },
+			{ "speaker": "Zelos", "text": "Sauber gekämpft, Kapitän. Das Meer wartet." },
+			{ "speaker": "Kapu", "text": "Dann nichts wie raus aufs offene Meer! Auf zum nächsten Abenteuer!",
+			  "action": { "type": "advance_quest", "id": "rd_main" } },
+			{ "speaker": "✶", "text": "Romance Dawn abgeschlossen! Die Reise geht weiter ...",
+			  "action": { "type": "next_arc" } }
+		]
+	}
+}

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://grandvoyageplayer"]
+
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_pc"]
+
+[sub_resource type="RectangleShape2D" id="shape_player"]
+size = Vector2(12, 12)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 10
+script = ExtResource("1_pc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("shape_player")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0

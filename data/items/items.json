@@ -1,0 +1,41 @@
+{
+	"reis_ball": {
+		"name": "Reisball", "typ": "heilung",
+		"beschreibung": "Ein einfacher Snack. Stellt 12 KP wieder her.",
+		"heal": 12, "preis": 6
+	},
+	"fleisch_spiess": {
+		"name": "Fleisch-Spieß", "typ": "heilung",
+		"beschreibung": "Saftiges Grillfleisch. Stellt 30 KP wieder her.",
+		"heal": 30, "preis": 15
+	},
+	"trank_des_mutes": {
+		"name": "Trank des Mutes", "typ": "heilung",
+		"beschreibung": "Belebt und heilt 50 KP.",
+		"heal": 50, "preis": 60
+	},
+	"rostiges_schwert": {
+		"name": "Rostiges Schwert", "typ": "waffe",
+		"beschreibung": "Eine einfache Klinge. +4 Angriff.",
+		"atk": 4, "preis": 40
+	},
+	"scharfe_katana": {
+		"name": "Scharfe Katana", "typ": "waffe",
+		"beschreibung": "Gut ausbalancierte Klinge. +9 Angriff.",
+		"atk": 9, "preis": 120
+	},
+	"praezisions_schleuder": {
+		"name": "Präzisions-Schleuder", "typ": "waffe",
+		"beschreibung": "Trifft aus der Distanz. +6 Angriff.",
+		"atk": 6, "preis": 80
+	},
+	"leder_weste": {
+		"name": "Lederweste", "typ": "ruestung",
+		"beschreibung": "Einfacher Schutz. +3 Verteidigung.",
+		"def": 3, "preis": 35
+	},
+	"seekarten_fragment": {
+		"name": "Seekarten-Fragment", "typ": "schluessel",
+		"beschreibung": "Ein Teil einer alten Seekarte."
+	}
+}
